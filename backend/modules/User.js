@@ -12,6 +12,11 @@ const UserSchema = new Schema({
     },
     email:{
         type: String,
+        required: true,
+        unique: true
+    },
+    number:{
+        type: String,
         required: true
     },
     number:{
@@ -23,5 +28,6 @@ const UserSchema = new Schema({
         default: Date.now
     }
 });
-
+// const User=mongoose.model('user',UserSchema);
+// User.createIndexes();
 module.exports=mongoose.model('user',UserSchema);

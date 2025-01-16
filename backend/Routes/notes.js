@@ -1,0 +1,87 @@
+const express = require('express');
+const router = express.Router();
+const notes = require('../modules/Notes');
+const fetchuser = require('../middleware/fetchuser');
+const { body, validationResult } = require('express-validator');
+
+//fetching notes of user using port /api/notes/fetchnotes
+
+router.get('/fetchnotes', fetchuser, async (req, res) => {
+    try {
+        const allNotes = await notes.find({ userid: req.user.id })
+        res.json(allNotes)
+    } catch (error) {
+        console.error(error.message)
+        res.status(400).send("some error occure fetchnotes")
+    }
+
+})
+
+//fetching notes of user using port /api/notes/AddNotes
+router.post('/AddNotes',fetchuser, [
+    body('title').isLength({ min: 3 }),
+    body('description').isLength({ min: 5 }),
+], async (req, res) => {
+    const result = validationResult(req);
+        if (!result.isEmpty()) {
+            return res.status(400).json({ errors: result.array() });
+        }
+    try {
+        
+        let newNote= await notes.create({
+            title: req.body.title,
+            description: req.body.description,
+            tag: req.body.tag,
+            user: req.user.id
+        }).then(user => res.json(user))
+        .catch(err => console.log(err))
+
+    } catch (error) {
+        console.error(error.message)
+        res.status(400).send("some error occure in addnotes")
+    }
+})
+
+//fetching notes of user using port /api/notes/updatenote
+router.put('/updatenote/:id',fetchuser, [
+    body('title').isLength({ min: 3 }),
+    body('description').isLength({ min: 5 }),
+], async (req, res) => {
+    const result = validationResult(req);
+        if (!result.isEmpty()) {
+            return res.status(400).json({ errors: result.array() });
+        }
+    try {
+        const note= {}
+        if(req.body.title){note.title=req.body.title}
+        if(req.body.description){note.description=req.body.description}
+        if(req.body.tag){note.tag=req.body.tag}
+
+        let findnote= await notes.findById(req.params.id)
+        if(!findnote){res.status(404).send("notes not found!")}
+        if(findnote.user && findnote.user.toString()!==req.user.id){res.status(420).send("unauthorized person detected")}
+
+        findnote= await notes.findByIdAndUpdate(req.params.id,{$set: note},{new: true})
+        res.json(findnote)
+    } catch (error) {
+        console.error(error.message)
+        res.status(400).send("some error occure in updatnote")
+    }
+})
+
+//fetching notes of user using port /api/notes/deletenote
+router.delete('/deletenote/:id',fetchuser, async (req, res) => {
+    try {
+        let findnote= await notes.findById(req.params.id)
+        if(!findnote){res.status(404).send("notes not found!")}
+        if(findnote.user && findnote.user.toString()!==req.user.id){res.status(420).send("unauthorized person detected")}
+
+        findnote= await notes.findByIdAndDelete(req.params.id)
+        res.json({"delete":"successuflly", note: findnote})
+    } catch (error) {
+        console.error(error.message)
+        res.status(400).send("some error occure in updatnote")
+    }
+})
+
+module.exports = router;

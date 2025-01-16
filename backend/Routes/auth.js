@@ -32,7 +32,7 @@ router.post('/createuser', [
         let newuser = await user.findOne({ email: req.body.email })
         console.log(newuser)
         if (newuser) {
-            return res.status(400).json({ emain: "already  hman exist" })
+            return res.status(400).json({ emain: "already  user exist" })
         }
 
         // loading data on to database 

@@ -1,0 +1,42 @@
+.container {
+    display: grid;
+}
+
+.nav-container {
+    display: block;
+    position: relative;
+    margin: 5px;
+    border-radius: 5px;
+    color: white;
+    border: 2px solid green;
+}
+
+.nav-light {
+    background-color: aliceblue;
+}
+
+.nav-dark {
+    background-color: rgb(31, 28, 28);
+}
+
+.left-nav {
+    margin: 10px;
+    display: flex;
+    float: left;
+}
+
+.right-nav {
+    margin: 10px;
+    display: flex;
+    float: right;
+}
+
+.left-nav a,
+.right-nav a {
+    margin: 5px;
+}
+
+.left-nav a:hover,
+.right-nav a:hover {
+    color: aqua;
+}

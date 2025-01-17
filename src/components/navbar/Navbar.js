@@ -1,29 +1,46 @@
-// import { Link } from 'react-router-dom'
-import NoteContext from '../../context/notes/NoteContext'
-// import NoteState from '../../context/notes/NoteState'
+import { Link } from 'react-router-dom'
 import './Navbar.css'
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
+import { useContext } from 'react'
+import ModeContext from '../../context/mode/modeContex'
 
 
-
-export default function Navbar() {
-    const context=useContext(NoteContext);
+export default function Navbar(props) {
+    const changemode = useContext(ModeContext)
+    console.log(changemode.intialstate.mode)
+    const [navstate, setState] = useState(changemode.intialstate.mode)
+    const togglemode = async () => {
+        if (changemode.intialstate.mode === "light") {
+            changemode.setMode({
+                "mode": "dark"
+            })
+            setState('dark')
+        }
+        else {
+            changemode.setMode({
+                "mode": "light"
+            })
+            setState('light')
+        }
+    }
     return (
         <>
             <div className="container">
-                <div className='nav-container nav-dark'>
+                <div className={`nav-container nav-${navstate}`}>
                     <div className='left-nav'>
                         {/* <Link to='/'>Home</Link> */}
-                        <h1>{context.name}</h1>
-                        <a href='/'>home</a>
-                        <a href='/'>home</a>
-                        <a href='/'>home</a>
-                        <a href='/'>home</a>
-                        <a href='/'>home</a>
+                        <Link to='/'>home</Link>
+                        <Link to='/home'>home</Link>
+                        <Link to='/'>home</Link>
+                        <Link to='/'>home</Link>
+                        <Link to='/'>home</Link>
                     </div>
                     <div className='right-nav'>
-                        <a href='/'>home</a>
-                        <a href='/'>home</a>
+                        <label className="switch">
+                            <input type="checkbox" onClick={togglemode} />
+                            <span className="slider round" ></span>
+                        </label>
+                        <Link to='/'>home</Link>
                     </div>
                 </div>
             </div>

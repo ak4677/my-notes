@@ -1,19 +1,14 @@
 import React, { useContext } from 'react'
-import NoteContext from '../../context/notes/noteContext';
-import ModeContext from '../../context/mode/modeContex';
+import Notes from '../notes/Notes'
+import '../notes/Notes.css'
+import ModeContext from '../../context/mode/modeContex'
 
 export default function Home() {
-    const a = useContext(NoteContext)
-    const b= useContext(ModeContext)
-    if(b.intialstate.mode==='dark'){
-        document.body.style.backgroundColor='rgb(45,45,45)';
-    }
-    else{
-        document.body.style.backgroundColor='white';
-    }
+    const mode=useContext(ModeContext)
     return (
-        <div>
-           this is use of contenxt {a.name} and b is {b.intialstate.mode}
+        <div id="home" className={`notes-container nav-${mode.intialstate.mode}`}>
+            <h1>NOTES</h1>
+            <Notes/>
         </div>
     )
 }

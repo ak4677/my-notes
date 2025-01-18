@@ -15,12 +15,14 @@ export default function Navbar(props) {
                 "mode": "dark"
             })
             setState('dark')
+            document.body.style.backgroundColor='#4d4d4d';
         }
         else {
             changemode.setMode({
                 "mode": "light"
             })
             setState('light')
+            document.body.style.backgroundColor='white';
         }
     }
     return (
@@ -29,9 +31,9 @@ export default function Navbar(props) {
                 <div className={`nav-container nav-${navstate}`}>
                     <div className='left-nav'>
                         {/* <Link to='/'>Home</Link> */}
-                        <Link to='/'>home</Link>
-                        <Link to='/home'>home</Link>
-                        <Link to='/'>home</Link>
+                        <Link to='/'>Notes</Link>
+                        <Link to='/home'>Home</Link>
+                        <Link to='/Add-notes'>Add-notes</Link>
                         <Link to='/'>home</Link>
                         <Link to='/'>home</Link>
                     </div>

@@ -8,7 +8,7 @@
     margin: 5px;
     border-radius: 5px;
     color: white;
-    border: 2px solid green;
+    border: 2px solid rgb(63, 72, 63);
 }
 
 .nav-light {
@@ -25,6 +25,7 @@
     margin: 10px;
     display: flex;
     float: left;
+    gap: 10px;
 }
 
 .right-nav {
@@ -38,6 +39,7 @@
     margin: 5px;
     text-decoration: none;
     color: currentColor;
+    
 }
 
 .left-nav a:hover,

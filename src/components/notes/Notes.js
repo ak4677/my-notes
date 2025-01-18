@@ -7,8 +7,9 @@ export default function Notes() {
     const { notes, setNotes } = fetchingnotes
     return (
         <div>
+            {/* <AddNotes /> */}
             {notes.map((note) => {
-                return (<div key={note._id}><Notesitem note={note}/></div> );
+                return (<Notesitem key={note._id} note={note}/> );
             })}
         </div>
     )

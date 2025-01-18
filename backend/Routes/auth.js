@@ -8,7 +8,7 @@ const router = express.Router();
 
 const secret_signature = "here i am giving my sign for user identification"
 
-//creating user with velid chekcpoints and encrption using port /api/auth
+//creating user with velid chekcpoints and encrption using port /api/auth/createuser
 router.post('/createuser', [
     body('name').isLength({ min: 3 }),
     body('email').isEmail(),

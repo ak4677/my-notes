@@ -7,7 +7,7 @@ import ModeContext from '../../context/mode/modeContex'
 
 export default function Navbar(props) {
     const changemode = useContext(ModeContext)
-    console.log(changemode.intialstate.mode)
+    // console.log(changemode.intialstate.mode)
     const [navstate, setState] = useState(changemode.intialstate.mode)
     const togglemode = async () => {
         if (changemode.intialstate.mode === "light") {
@@ -33,16 +33,16 @@ export default function Navbar(props) {
                         {/* <Link to='/'>Home</Link> */}
                         <Link to='/'>NOTES</Link>
                         <Link to='/home'>Home</Link>
-                        <Link to='/Add-notes'>Add-notes</Link>
-                        <Link to='/'>home</Link>
-                        <Link to='/'>home</Link>
+                        <Link to='/Add-notes'>Add</Link>
+                        {/* <Link to='/'>home</Link>
+                        <Link to='/'>home</Link> */}
                     </div>
                     <div className='right-nav'>
                         <label className="switch">
                             <input type="checkbox" onClick={togglemode} />
                             <span className="slider round" ></span>
                         </label>
-                        <Link to='/'>home</Link>
+                        {/* <Link to='/'>home</Link> */}
                     </div>
                 </div>
             </div>

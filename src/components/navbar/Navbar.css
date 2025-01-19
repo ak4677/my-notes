@@ -1,5 +1,7 @@
 .container {
     display: grid;
+    position: sticky;
+    top: 0;
 }
 
 .nav-container {
@@ -111,3 +113,13 @@
   .slider.round:before {
     border-radius: 50%;
   }
+
+  .notes-container{
+    justify-self: center;
+    width: 75%;
+    top: 50px;
+    position: relative;
+}
+.notes-container h1{
+    justify-self: center;
+}

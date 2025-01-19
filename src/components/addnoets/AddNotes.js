@@ -6,8 +6,10 @@ import NoteContext from '../../context/notes/noteContext'
 
 
 export default function AddNotes() {
+
   const lighting=useContext(ModeContext)
   const getinginfo=useContext(NoteContext)
+
   const {addnote}=getinginfo
   const [newnote,setAddnote]=useState({title:"",description:"",tag:""})
 
@@ -16,7 +18,8 @@ export default function AddNotes() {
     addnote(newnote.title,newnote.description,newnote.tag);
     setAddnote({ title: "", description: "", tag: "" });
   }
-  let onChange=(e)=>{
+
+  const onChange=(e)=>{
     setAddnote({...newnote,[e.target.name]: e.target.value})
   }
   return (

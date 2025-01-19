@@ -1,14 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Notes from '../notes/Notes'
-import '../notes/Notes.css'
 import ModeContext from '../../context/mode/modeContex'
+import NoteContext from '../../context/notes/noteContext'
+
+
 
 export default function Home() {
-    const mode=useContext(ModeContext)
+    const mode = useContext(ModeContext)
+    const fetching = useContext(NoteContext)
+    const { fetchnote } = fetching;
+    useEffect(() => {
+        fetchnote();
+    }, [])
     return (
         <div id="home" className={`notes-container nav-${mode.intialstate.mode}`}>
             <h1>NOTES</h1>
-            <Notes/>
+            <Notes />
         </div>
     )
 }

@@ -1,29 +1,34 @@
-.cantainer{
+.cantainer {
     justify-self: center;
     padding: 10px;
     width: 50%;
     margin: 20px;
     border-radius: 5px;
 }
-.cantainer-light{
+
+.cantainer-light {
     color: black;
     background-color: #f2f2f2;
 }
-.cantainer-dark{
+
+.cantainer-dark {
     color: white;
     background-color: #353839;
 }
 
-.name{
+.name {
     margin-top: 5px;
     font-size: 50px;
     font-family: 'Times New Roman', Times, serif;
 }
-.entry{
+
+.entry {
     overflow-x: hidden;
     width: 100%;
 }
-input[type=text],textarea{
+
+input[type=text],
+textarea {
     padding: 10px;
     margin-top: 10px;
     width: 100%;
@@ -32,27 +37,58 @@ input[type=text],textarea{
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
 }
-.submit{
-  display: block;
-  padding: 5px;
-  margin: 5px;
+
+.submit {
+    display: block;
+    padding: 5px;
+    margin: 5px;
 }
-.button{
-  width: 4rem;
-  height: 2rem;
-  border-radius: 5px;
-  border: none;
-  background-color: rgb(127, 221, 127);
-  box-sizing: border-box;
-  cursor: pointer;
-  
+
+.button {
+    width: 4rem;
+    height: 2rem;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(127, 221, 127);
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-left: 5px;
 }
-.button:hover{
+
+.button:hover {
     box-shadow: 4px 5px 5px #aaaaaa;
-    transition:  0.1s;
+    transition: 0.1s;
 }
+
 .button:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-  }
+}
+
+.editcontainer {
+    /* display: none;  */
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+.editform {
+    border-radius: 5px;
+    /* background-color: #272323; */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+}

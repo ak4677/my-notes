@@ -22,7 +22,7 @@ export default function NoteState(props) {
     });
     const data=await response.json();
     setNotes(data)
-    showalerts("success","all notes")
+    // showalerts("success","all notes")
   }
 
 

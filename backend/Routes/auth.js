@@ -66,7 +66,7 @@ router.post('/login', [
     body('email').isEmail(),
     body('password').exists(),
 ], async (req, res) => {
-
+    let status=false
     const result = validationResult(req);
     if (!result.isEmpty()) {
         return res.status(420).send("wrong credentials");
@@ -92,7 +92,8 @@ router.post('/login', [
             }
         }
         const token = jwt.sign(data, secret_signature)
-        res.json(token)
+        status=true
+        res.json(status,token)
         console.log(token)
 
     } catch (error) {
@@ -107,9 +108,11 @@ router.post('/login', [
 router.post('/getlogin',fetchuser, async (req, res) => {
 
     try{
+        let status=false
         const userId=req.user.username
         getuser=await user.findOne(userId).select("-password")
-        res.json(getuser)
+        status=true
+        res.json(status,getuser)
 
     } catch (error) {
         console.error(error.message)

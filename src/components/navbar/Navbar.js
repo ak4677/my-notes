@@ -42,7 +42,8 @@ export default function Navbar(props) {
                             <input type="checkbox" onClick={togglemode} />
                             <span className="slider round" ></span>
                         </label>
-                        {/* <Link to='/'>home</Link> */}
+                        <Link to='/Login' className='login-button'>Login</Link>
+                        <Link to='/Login' className='signup-button'>Signup</Link>
                     </div>
                 </div>
             </div>

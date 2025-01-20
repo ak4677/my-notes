@@ -2,25 +2,32 @@ import React, { useContext, useState } from 'react'
 import './AddNotes.css'
 import ModeContext from '../../context/mode/modeContex'
 import NoteContext from '../../context/notes/noteContext'
+import AlertContext from '../../context/alerts/alertContext'
 
 
 
 export default function AddNotes() {
 
-  const lighting=useContext(ModeContext)
-  const getinginfo=useContext(NoteContext)
+  const lighting = useContext(ModeContext)
+  const getinginfo = useContext(NoteContext)
+  const showalert=useContext(AlertContext)
+  const {showalerts}=showalert
+  const { addnote } = getinginfo
+  const [newnote, setAddnote] = useState({ title: "", description: "", tag: "" })
 
-  const {addnote}=getinginfo
-  const [newnote,setAddnote]=useState({title:"",description:"",tag:""})
-
-  const add=(e)=>{
+  const add = (e) => {
     e.preventDefault();
-    addnote(newnote.title,newnote.description,newnote.tag);
-    setAddnote({ title: "", description: "", tag: "" });
+    if (newnote.title && newnote.description) {
+      addnote(newnote.title, newnote.description, newnote.tag);
+      setAddnote({ title: "", description: "", tag: "" });
+    } else {
+      // e.preventDefault();
+      showalerts("danger", "Title and description are required!");
+    }
   }
 
-  const onChange=(e)=>{
-    setAddnote({...newnote,[e.target.name]: e.target.value})
+  const onChange = (e) => {
+    setAddnote({ ...newnote, [e.target.name]: e.target.value })
   }
   return (
     <div className={`cantainer cantainer-${lighting.intialstate.mode}`}>
@@ -30,7 +37,7 @@ export default function AddNotes() {
             <label htmlFor="title">Title</label>
           </div>
           <div className='entry'>
-            <input type="text" id="title" name="title" placeholder="title of the note " onChange={onChange}/>
+            <input type="text" id="title" name="title" placeholder="title of the note " value={newnote.title} onChange={onChange} />
           </div>
         </div>
         <div className='tag'>
@@ -38,7 +45,7 @@ export default function AddNotes() {
             <label htmlFor="field">Tag</label>
           </div>
           <div className='entry'>
-            <input type="text" id="field" name="tag" placeholder="Enter a tag or it will be default" onChange={onChange}/>
+            <input type="text" id="field" name="tag" placeholder="Enter a tag or it will be default" value={newnote.tag} onChange={onChange} />
           </div>
         </div>
         <div className='description'>
@@ -46,11 +53,11 @@ export default function AddNotes() {
             <label htmlFor="subject">Description</label>
           </div>
           <div className='entry'>
-            <textarea id="subject" name="description" placeholder="notes..." onChange={onChange}/>
+            <textarea id="subject" name="description" placeholder="notes..." value={newnote.description} onChange={onChange} />
           </div>
         </div>
         <div className='submit'>
-            <button className='button' onClick={add}>Submit</button>
+          <button className='button' onClick={add}>Submit</button>
         </div>
       </form>
     </div>

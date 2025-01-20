@@ -17,7 +17,7 @@ export default function NoteState(props) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNzM3MDIwMDM2fQ.zkMr2AN0P7Z0RgCcY77OBRusOWuUAkdYFXRsCmNcq1k",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNzM3Mzk1NDQwfQ.0Uq1dLR36mDK6otwLMNJjjSLCqFRsUDK4NHtKCfZDq8",
       },
     });
     const data=await response.json();
@@ -33,7 +33,7 @@ export default function NoteState(props) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNzM3MDIwMDM2fQ.zkMr2AN0P7Z0RgCcY77OBRusOWuUAkdYFXRsCmNcq1k",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNzM3Mzk1NDQwfQ.0Uq1dLR36mDK6otwLMNJjjSLCqFRsUDK4NHtKCfZDq8",
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -53,7 +53,7 @@ export default function NoteState(props) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNzM3MDIwMDM2fQ.zkMr2AN0P7Z0RgCcY77OBRusOWuUAkdYFXRsCmNcq1k",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNzM3Mzk1NDQwfQ.0Uq1dLR36mDK6otwLMNJjjSLCqFRsUDK4NHtKCfZDq8",
       },
       body: JSON.stringify({id}),
     });
@@ -72,9 +72,9 @@ export default function NoteState(props) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNzM3MDIwMDM2fQ.zkMr2AN0P7Z0RgCcY77OBRusOWuUAkdYFXRsCmNcq1k",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNzM3Mzk1NDQwfQ.0Uq1dLR36mDK6otwLMNJjjSLCqFRsUDK4NHtKCfZDq8",
       },
-      body: JSON.stringify({ title, description, tag }),
+      body: JSON.stringify({_id, title, description, tag }),
     });
 
     console.log(response.json())
@@ -85,9 +85,10 @@ export default function NoteState(props) {
         element.title = title;
         element.description = description;
         element.tag = tag;
+        break;
       }
     }
-    showalerts("success",`Note is changed!`)
+    showalerts("warning",`Note is changed!`)
   }
 
   return (

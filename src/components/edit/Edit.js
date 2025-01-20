@@ -5,34 +5,33 @@ import NoteContext from '../../context/notes/noteContext'
 export default function Edit(props) {
     const lighting = useContext(ModeContext)
     const getinginfo = useContext(NoteContext)
-
     const { editnote } = getinginfo
-    const [newnote, setAddnote] = useState({ etitle: `${props.title}`, edescription: `${props.description}`, etag: `${props.tag}` })
+    const [newnote, setAddnote] = useState({_Id:`${props._Id}`, etitle: `${props.title}`, edescription: `${props.description}`, etag: `${props.tag}` })
 
     const add = (e) => {
-        e.preventDefault();
-        editnote(props._id,newnote.etitle,newnote.edescription,newnote.etag)
+        editnote(newnote._Id, newnote.etitle, newnote.edescription, newnote.etag)
         setAddnote({ etitle: newnote.etitle, edescription: newnote.edescription, etag: newnote.etag });
-        console.log(newnote.etitle)
-        const hide = document.getElementById('edit')
-        hide.style.display = "none"
+        props.onClose();
     }
 
     const onChange = (e) => {
         setAddnote({ ...newnote, [e.target.name]: e.target.value })
     }
+
+    const notadd = (e) => {
+        e.preventDefault();
+        props.onClose(); // Close modal via parent component
+      };
     
-    const notadd = () => {
-        const hide = document.getElementById('edit')
-        hide.style.display = "none"
-    }
-    // window.onclick = function (event) {
-    //     if (event.target === hide) {
-    //         hide.style.display = "none";
-    //     }
-    // }
+      const handleClickOutside = (e) => {
+        if (e.target.id === "edit") {
+          props.onClose(); // Close modal when clicking outside
+        }
+      };
+    
+      if (!props.visible) return null;
     return (
-        <div id='edit' className={`editcontainer editcontainer-${lighting.intialstate.mode}`}>
+        <div id='edit' className={`editcontainer editcontainer-${lighting.intialstate.mode}`} onClick={handleClickOutside}>
             <form className={`editform nav-${lighting.intialstate.mode}`}>
                 <div className='name'>
                     <label htmlFor="etitle">Title</label>

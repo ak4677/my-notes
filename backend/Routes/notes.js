@@ -17,7 +17,7 @@ router.get('/fetchnotes', fetchuser, async (req, res) => {
 
 })
 
-//fetching notes of user using port /api/notes/AddNotes
+//Add notes of user using port /api/notes/AddNotes
 router.post('/AddNotes',fetchuser, [
     body('title').isLength({ min: 3 }),
     body('description').isLength({ min: 5 }),
@@ -42,7 +42,7 @@ router.post('/AddNotes',fetchuser, [
     }
 })
 
-//fetching notes of user using port /api/notes/updatenote
+//Edit note of user using port /api/notes/updatenote
 router.put('/updatenote/:id',fetchuser, [
     body('title').isLength({ min: 3 }),
     body('description').isLength({ min: 5 }),
@@ -69,7 +69,7 @@ router.put('/updatenote/:id',fetchuser, [
     }
 })
 
-//fetching notes of user using port /api/notes/deletenote
+//deleting note of user using port /api/notes/deletenote
 router.delete('/deletenote/:id',fetchuser, async (req, res) => {
     try {
         let findnote= await notes.findById(req.params.id)

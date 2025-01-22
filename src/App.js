@@ -7,6 +7,7 @@ import AddNotes from './components/addnoets/AddNotes';
 import AlertState from './context/alerts/AlertState';
 import Alerts from './components/warnings/Alerts';
 import Login from './components/login/Login';
+import Signup from './components/signup/Signup';
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
               <Alerts/>
               <Routes>
                 <Route path="/" element={"welcome to my-notes"} />
-                <Route path="home" element={<Home />} />
-                <Route path="Add-notes" element={<AddNotes />} />
-                <Route path="Login" element={<Login />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/Add-notes" element={<AddNotes />} />
+                <Route path="/Login" element={<Login />} />
+                <Route path="/Signup" element={<Signup />} />
               </Routes>
             </BrowserRouter>
           </NoteState>

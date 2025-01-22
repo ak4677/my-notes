@@ -3,6 +3,7 @@ import './AddNotes.css'
 import ModeContext from '../../context/mode/modeContex'
 import NoteContext from '../../context/notes/noteContext'
 import AlertContext from '../../context/alerts/alertContext'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -11,6 +12,7 @@ export default function AddNotes() {
   const lighting = useContext(ModeContext)
   const getinginfo = useContext(NoteContext)
   const showalert=useContext(AlertContext)
+  const navigate=useNavigate()
   const {showalerts}=showalert
   const { addnote } = getinginfo
   const [newnote, setAddnote] = useState({ title: "", description: "", tag: "" })
@@ -30,7 +32,7 @@ export default function AddNotes() {
     setAddnote({ ...newnote, [e.target.name]: e.target.value })
   }
   return (
-    <div className={`cantainer cantainer-${lighting.intialstate.mode}`}>
+    <>{localStorage.getItem('token')?<div className={`cantainer cantainer-${lighting.intialstate.mode}`}>
       <form className='form'>
         <div className='title'>
           <div className='name'>
@@ -60,6 +62,6 @@ export default function AddNotes() {
           <button className='button' onClick={add}>Submit</button>
         </div>
       </form>
-    </div>
+    </div>:navigate('/login')}</>
   )
 }

@@ -8,7 +8,7 @@ const { body, validationResult } = require('express-validator');
 
 router.get('/fetchnotes', fetchuser, async (req, res) => {
     try {
-        const allNotes = await notes.find({ userid: req.user.id })
+        const allNotes = await notes.find({ user: req.user.id })
         res.json(allNotes)
     } catch (error) {
         console.error(error.message)
@@ -33,8 +33,9 @@ router.post('/AddNotes',fetchuser, [
             description: req.body.description,
             tag: req.body.tag,
             user: req.user.id
-        }).then(user => res.json(user))
-        .catch(err => console.log(err))
+        })
+        const savenote=await newNote.save();
+        res.json(savenote);
 
     } catch (error) {
         console.error(error.message)

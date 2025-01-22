@@ -21,9 +21,9 @@ export default function Login() {
                 body: JSON.stringify({ email: credential.Email, password: credential.password }),
             });
             const data=await response.json();
-            console.log(data)
+            // console.log(data)
             localStorage.setItem('token',data)
-            navigate("/");
+            navigate("/home");
 
         } catch (error) {
             showalerts("danger", `worange credentials`)
@@ -39,14 +39,14 @@ export default function Login() {
             <form onSubmit={submit} className={`editform nav-${lighting.intialstate.mode}`}>
                 <div className='name'>
                     <label htmlFor="Email">Email</label>
-                    <input type="text" id="Email" name="Email" placeholder="Enter email " value={credential.Email} onChange={onChange} />
+                    <input type="text" id="Email" name="Email" placeholder="Enter email " autoComplete="email"value={credential.Email} onChange={onChange} />
                 </div>
                 <div className='name'>
                     <label htmlFor="password">Password</label>
-                    <input type="text" id="password" name="password" placeholder="Enter Pawwsord" value={credential.password} onChange={onChange} />
+                    <input type="password" id="password" name="password" autoComplete="current-password" placeholder="Enter Pawwsord" value={credential.password} onChange={onChange} />
                 </div>
                 <div className='submit'>
-                    <button className='button' >update</button>
+                    <button className='button' >Log in</button>
                 </div>
             </form>
         </div>

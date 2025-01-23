@@ -3,7 +3,7 @@
     padding: 10px;
     width: 90%;
     border: 2px solid;
-    border-radius: 5px;
+    border-radius: 16px;
     margin: 5px;
 }
 .details{
@@ -15,10 +15,32 @@
     width: 87%;
     border:2px solid black;
 }
-.details h1{
+.title{
     margin-top: 0;
+    display: block;
+    padding: 5px;
+    position: relative;
+}
+.title h2{
+    margin: 0;
+    float: left;
+}
+.cchange{
+    float: right;
+    display: flex;
+}
+.colorbutton{
+    border-radius: 67%;
+    width: 17px;
+    height: 17px;
+    border: 1px solid black;;
+}
+.cchange:hover .color{
+    display: block;
 }
 .details p{
+    margin-bottom: 16px;
+    margin-top: 0;
     padding: 5px;
 }
 .details div i{
@@ -29,4 +51,21 @@
 }
 .pointer:hover{
     transform: translateY(-4px);
+}
+.color{
+    display: none;
+    top: 23px;
+    position: absolute;
+}
+.color a{
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-decoration: none;
+    color: white;
+    border: 1px solid black;
+    border-radius: 67%;
+    width: 17px;
+    height: 17px;
+    margin-top: 3px;
 }

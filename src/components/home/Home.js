@@ -23,8 +23,8 @@ export default function Home() {
     }, [localStorage.getItem('token')])
     return (
         <>
-            <div id="home" className={`notes-container nav-${mode.intialstate.mode}`}>
-                <h1>NOTES</h1>
+            <div id="home" className={`notes-container `}>
+                <h1 className={`nav-${mode.intialstate.mode}`}>NOTES</h1>
                 <div><Notes /></div>
             </div>
         </>

@@ -20,14 +20,14 @@ export default function Navbar(props) {
                 "mode": "dark"
             })
             setState('dark')
-            document.body.style.backgroundColor = '#4d4d4d';
+            document.body.style.backgroundImage= "linear-gradient(45deg, #83677a, #4a493d)";
         }
         else {
             changemode.setMode({
                 "mode": "light"
             })
             setState('light')
-            document.body.style.backgroundColor = 'white';
+            document.body.style.backgroundImage = "linear-gradient(45deg, #7c9885, #b5b682)";
         }
     }
     return (

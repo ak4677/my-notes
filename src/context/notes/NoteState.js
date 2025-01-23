@@ -66,7 +66,7 @@ export default function NoteState(props) {
 
 
   //Edit note 
-  const editnote = async (_id, title, description, tag) => {
+  const editnote = async (_id, title, description, tag,color) => {
 
     const response = await fetch(`http://localhost:5000/api/notes/updatenote/${_id}`, {
       method: "PUT",
@@ -74,7 +74,7 @@ export default function NoteState(props) {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('token'),
       },
-      body: JSON.stringify({_id, title, description, tag }),
+      body: JSON.stringify({_id, title, description, tag, color }),
     });
 
     console.log(response.json())
@@ -85,6 +85,7 @@ export default function NoteState(props) {
         element.title = title;
         element.description = description;
         element.tag = tag;
+        element.color = color;
         break;
       }
     }

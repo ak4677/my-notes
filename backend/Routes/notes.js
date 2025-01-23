@@ -32,7 +32,8 @@ router.post('/AddNotes',fetchuser, [
             title: req.body.title,
             description: req.body.description,
             tag: req.body.tag,
-            user: req.user.id
+            user: req.user.id,
+            color: req.body.color
         })
         const savenote=await newNote.save();
         res.json(savenote);
@@ -54,14 +55,18 @@ router.put('/updatenote/:id',fetchuser, [
         }
     try {
         const note= {}
+        console.log("hello0.1")
         if(req.body.title){note.title=req.body.title}
         if(req.body.description){note.description=req.body.description}
         if(req.body.tag){note.tag=req.body.tag}
+        console.log("hello0.2")
+        if(req.body.color){note.color=req.body.color}
+        console.log("hello0.3")
 
         let findnote= await notes.findById(req.params.id)
         if(!findnote){res.status(404).send("notes not found!")}
         if(findnote.user && findnote.user.toString()!==req.user.id){res.status(420).send("unauthorized person detected")}
-
+        console.log("hello1")
         findnote= await notes.findByIdAndUpdate(req.params.id,{$set: note},{new: true})
         res.json(findnote)
     } catch (error) {
@@ -81,7 +86,7 @@ router.delete('/deletenote/:id',fetchuser, async (req, res) => {
         res.json({"delete":"successuflly", note: findnote})
     } catch (error) {
         console.error(error.message)
-        res.status(400).send("some error occure in updatnote")
+        res.status(400).send("some error occure in deletenote")
     }
 })
 

@@ -1,4 +1,4 @@
-.items{
+.items {
     /* display: grid;
     grid-template-columns: auto auto auto; */
 
@@ -11,12 +11,13 @@
     padding: 10px;
     width: 100%;
 }
+
 .items-light {
-    background-color: white;
+    /* background-image: linear-gradient(45deg, #7c9885, #b5b682); */
     color: black;
 }
 
 .items-dark {
-    background-color: #4d4d4d;
+    /* background-image: linear-gradient(45deg, #83677a, #4a493d); */
     color: white;
 }

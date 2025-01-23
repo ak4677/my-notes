@@ -6,10 +6,10 @@ export default function Edit(props) {
     const lighting = useContext(ModeContext)
     const getinginfo = useContext(NoteContext)
     const { editnote } = getinginfo
-    const [newnote, setAddnote] = useState({_Id:`${props._Id}`, etitle: `${props.title}`, edescription: `${props.description}`, etag: `${props.tag}` })
+    const [newnote, setAddnote] = useState({_Id:`${props._Id}`, etitle: `${props.title}`, edescription: `${props.description}`, etag: `${props.tag}`, ecolor: `${props.color}` })
 
     const add = (e) => {
-        editnote(newnote._Id, newnote.etitle, newnote.edescription, newnote.etag)
+        editnote(newnote._Id, newnote.etitle, newnote.edescription, newnote.etag, newnote.ecolor)
         setAddnote({ etitle: newnote.etitle, edescription: newnote.edescription, etag: newnote.etag });
         props.onClose();
     }

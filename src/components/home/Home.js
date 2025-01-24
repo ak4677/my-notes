@@ -18,7 +18,7 @@ export default function Home() {
             fetchnote();
         }
         else{
-            navigate("/login");
+            navigate("/Login");
         }
     }, [localStorage.getItem('token')])
     return (

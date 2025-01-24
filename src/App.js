@@ -15,7 +15,7 @@ function App() {
       <AlertState>
         <ModeState>
           <NoteState>
-            <BrowserRouter>
+            <BrowserRouter >
               <Navbar />
               <Alerts/>
               <Routes>

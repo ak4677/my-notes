@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './AddNotes.css'
 import ModeContext from '../../context/mode/modeContex'
 import NoteContext from '../../context/notes/noteContext'
@@ -17,6 +17,12 @@ export default function AddNotes() {
   const { addnote } = getinginfo
   const [newnote, setAddnote] = useState({ title: "", description: "", tag: "" })
 
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/Login');
+    }
+  }, [navigate]);
+
   const add = (e) => {
     e.preventDefault();
     if (newnote.title && newnote.description) {
@@ -31,8 +37,10 @@ export default function AddNotes() {
   const onChange = (e) => {
     setAddnote({ ...newnote, [e.target.name]: e.target.value })
   }
+
+
   return (
-    <>{localStorage.getItem('token')?<div className={`cantainer cantainer-${lighting.intialstate.mode}`}>
+    <><div className={`cantainer cantainer-${lighting.intialstate.mode}`}>
       <form className='form'>
         <div className='title'>
           <div className='name'>
@@ -62,6 +70,6 @@ export default function AddNotes() {
           <button className='button' onClick={add}>Submit</button>
         </div>
       </form>
-    </div>:navigate('/login')}</>
+    </div></>
   )
 }

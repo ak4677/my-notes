@@ -1,19 +1,30 @@
-import React, { useContext} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Alerts.css'
 import AlertContext from '../../context/alerts/alertContext'
 export default function Alerts(props) {
-  const usealert=useContext(AlertContext)
-  const {timeout}=usealert
+  const usealert = useContext(AlertContext)
+  const [visible, setVisible] = useState(false);
+  const {alert, timeout } = usealert
+  useEffect(() => {
+    if (alert.typ) {
+      setVisible(true);
+      const timer = setTimeout(() => {
+        setVisible(false); // Hide alert after 3 seconds
+        timeout(); // Clear the alert from the context
+      }, 3000);
+      return () => clearTimeout(timer); // Cleanup on unmount or new alert
+    }
+  }, [alert, timeout]);
   return (
-   usealert.alert.typ&&<>
-      <div className={`alert alert-${usealert.alert.typ} `} role='alert'>
+    <div className='alert-fixed-container'>
+      {alert.typ &&<div  className={`alert alert-${alert.typ} ${visible ? 'visible' : 'hidden'}`} role='alert'>
         <span>
           {/* <strong >{usealert.alert.typ}: </strong> */}
-          <span>{usealert.alert.msg}</span>
+          <span>{alert.msg}</span>
         </span>
-        <span className='cross' onClick={()=>timeout()} >&times;</span>
-      </div>
-    </>
+        <div className='cross' onClick={() => timeout()} >&times;</div>
+      </div>}
+    </div>
   )
 }
 

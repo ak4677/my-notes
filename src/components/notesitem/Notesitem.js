@@ -28,10 +28,10 @@ export default function Notesitem(props) {
               <span className='colorbutton' style={{backgroundImage: color.includes('linear-gradient') ? color : 'none',backgroundColor: color.includes('linear-gradient') ? 'transparent' : color,}}></span>
               <div className='color'>
                 <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #a100ff, #303481)')} style={{backgroundImage: "linear-gradient(45deg,  #a100ff, #303481)"}}></a>
-                <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #7c9885, #b5b682)')} style={{backgroundImage: "linear-gradient(45deg, #7c9885, #b5b682)"}}></a>
-                <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #7c9885, #b5b682)')} style={{backgroundImage: "linear-gradient(45deg, #7c9885, #b5b682)"}}></a>
-                <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #7c9885, #b5b682)')} style={{backgroundImage: "linear-gradient(45deg, #7c9885, #b5b682)"}}></a>
-                <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #7c9885, #b5b682)')} style={{backgroundImage: "linear-gradient(45deg, #7c9885, #b5b682)"}}></a>
+                <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #C4E759, #6DE195)')} style={{backgroundImage: "linear-gradient(45deg, #C4E759, #6DE195)"}}></a>
+                <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #8DEBFF, #6CACFF)')} style={{backgroundImage: "linear-gradient(45deg, #8DEBFF, #6CACFF)"}}></a>
+                <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #F8C390, #D279EE)')} style={{backgroundImage: "linear-gradient(45deg, #F8C390, #D279EE)"}}></a>
+                <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #FDEB82, #F78FAD)')} style={{backgroundImage: "linear-gradient(45deg, #FDEB82, #F78FAD)"}}></a>
                 <a href='#' onClick={()=>changecolor('linear-gradient(45deg, #7c9885, #b5b682)')}  style={{backgroundImage: "linear-gradient(45deg, #7c9885, #b5b682)"}}></a>
               </div>
             </div>

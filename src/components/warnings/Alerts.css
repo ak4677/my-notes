@@ -1,5 +1,5 @@
 .alert{
-    display: block;
+    display: flow-root;
     position: relative;
     top: 0;
     justify-self: center;
@@ -7,11 +7,35 @@
     width: 40%;
     border-radius: 4px;
     font-size: large;
-    opacity: 0.7;
+    opacity: 0;
     box-shadow: 0 2px 10px 0 rgb(116, 132, 235), 0 5px 10px 0 rgb(121, 166, 243);
     position: sticky;
-    z-index: 2;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: hidden;
 }
+.alert-fixed-container {
+    width: 40%;
+    height: 50px; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    justify-self: center; 
+    position: sticky; 
+    overflow: hidden; 
+    top: 0;
+    z-index: 2;
+  }
+  
+.alert.visible {
+    opacity: 1; /* Show the alert */
+    visibility: visible; /* Make it visible */
+  }
+  
+  /* Hidden state for the alert */
+  .alert.hidden {
+    opacity: 0; /* Hide the alert */
+    visibility: hidden; /* Fully hide the content */
+  }
 .alert-warning{
     color: #856404;
     background-color: #fff3cd;

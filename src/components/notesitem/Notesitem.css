@@ -2,18 +2,18 @@
     float: left;
     padding: 10px;
     width: 90%;
-    border: 2px solid;
+    border: none;
     border-radius: 16px;
     margin: 5px;
 }
 .details{
     border-radius: 5px;
-    box-shadow: 0 2px 10px 0 #7484eb, 0 5px 10px 0 #79a6f3;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     display: grid;
     margin: 10px;
     padding: 5px;
     width: 87%;
-    border:2px solid black;
+    color: black;
 }
 .title{
     margin-top: 0;

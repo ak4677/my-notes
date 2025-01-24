@@ -19,7 +19,7 @@ function App() {
               <Navbar />
               <Alerts/>
               <Routes>
-                <Route path="/" element={"welcome to my-notes"} />
+                <Route path="/" element={<Home/>} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/Add-notes" element={<AddNotes />} />
                 <Route path="/Login" element={<Login />} />

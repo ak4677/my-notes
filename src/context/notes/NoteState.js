@@ -9,11 +9,11 @@ export default function NoteState(props) {
   const {showalerts}=showalert
   const intialnotes = []
   const [notes, setNotes] = useState(intialnotes)
-  
+  const host=process.env.REACT_APP_PORT;
 
   //fetch all notes from the server
   const fetchnote = async () => {
-    const response = await fetch("http://localhost:5000/api/notes/fetchnotes", {
+    const response = await fetch(`${host}api/notes/fetchnotes`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export default function NoteState(props) {
   //Add new note in database
   const addnote = async (title, description, tag) => {
     console.log(title, description, tag)
-    const response = await fetch("http://localhost:5000/api/notes/AddNotes", {
+    const response = await fetch(`${host}api/notes/AddNotes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,25 +37,29 @@ export default function NoteState(props) {
       },
       body: JSON.stringify({ title, description, tag }),
     });
-
-    showalerts("success","Note is added successfully")
     const data=await response.json();
-    // console.log(data)
+    if(response.ok){
+      showalerts("success","Note is added successfully")
+      
+      // console.log(data)
 
-    // console.log("adding new note")
-    setNotes(notes.concat(data))
+      // console.log("adding new note")
+      setNotes(notes.concat(data))
+    }else{
+      showalerts("danger",`${data}`)
+    }
   }
 
 
   //Delete note for user
   const deletenote =async (id,name) => {
-    const response = await fetch(`http://localhost:5000/api/notes/deletenote/${id}`, {
+    const response = await fetch(`${host}api/notes/deletenote/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('token'),
       },
-      body: JSON.stringify({id}),
+      // body: JSON.stringify({id}),
     });
     showalerts("danger",`Note ${name} delete successfully`)
     const data=await response.json();
@@ -68,13 +72,14 @@ export default function NoteState(props) {
   //Edit note 
   const editnote = async (_id, title, description, tag,color) => {
 
-    const response = await fetch(`http://localhost:5000/api/notes/updatenote/${_id}`, {
+    const response = await fetch(`${host}api/notes/updatenote/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('token'),
       },
-      body: JSON.stringify({_id, title, description, tag, color }),
+      // body: JSON.stringify({_id, title, description, tag, color }),
+      body: JSON.stringify({title, description, tag, color }),
     });
 
     console.log(response.json())

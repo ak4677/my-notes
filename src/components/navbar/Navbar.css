@@ -1,75 +1,137 @@
+:root {
+  /* Colors */
+  --color-primary: #3b82f6; /* Blue for highlights */
+  --color-secondary: #06b6d4; /* Cyan for gradient/accents */
+  --color-success: #10b981; /* Green for buttons */
+  --color-text-light: #1f2937; /* Dark text for light mode */
+  --color-text-dark: #f3f4f6; /* Light text for dark mode */
+  --color-bg-light: rgba(255, 255, 255, 0.4);
+  --color-bg-dark: rgba(31, 31, 31, 0.7);
+  --color-shadow-light: rgba(0, 0, 0, 0.25);
+  --color-shadow-dark: rgba(0, 0, 0, 0.4);
+
+  /* Glassmorphism/Depth */
+  --blur: 12px;
+  --border-color: rgba(255, 255, 255, 0.15);
+  --shadow-1: 0 8px 20px var(--color-shadow-light);
+  --shadow-2: 0 12px 30px var(--color-shadow-dark);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.4s ease;
+}
+/* 🌄 Body Gradient Background */
 body {
   min-height: 100vh;
-  background-image: linear-gradient(45deg, #7c9885, #b5b682);
+  /* Updated gradient for a richer look */
+  background: linear-gradient(135deg, #6c8875 0%, #a5a672 100%);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  margin: 0;
+  color: var(--color-text-dark);
+  transition: background var(--transition-medium);
+  
+  /* Subtle inner shadow for depth */
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1); 
 }
-
+/* 🧱 Main Container (Sticky Wrapper) */
 .container {
   display: grid;
   position: sticky;
   top: 0;
-  z-index: 1;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: large;
+  z-index: 100; /* Increased z-index */
+  font-size: 1.05rem; /* Slightly smaller for elegance */
+  padding-top: 10px;
 }
 
+/* 🧭 Navigation Bar - Enhanced Glassmorphism */
 .nav-container {
-  display: block;
-  position: relative;
-  margin: 5px;
-  border-radius: 5px;
-  color: white;
-  border: 2px solid rgb(63, 72, 63);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto; /* Removed vertical margin for sleeker look */
+  width: 90%;
+  max-width: 1200px; /* Max width added */
+  border-radius: 18px; /* Slightly larger radius */
+  padding: 12px 25px; /* More padding */
+  
+  /* Core Glassmorphism */
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur)); /* Safari support */
+  border: 1px solid var(--border-color);
+  
+  /* Elevated 3D-like shadow */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
 }
 
+/* 🌞 Light Navbar */
 .nav-light {
-  background-color: #4d6a84;
-  color: white;
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+  box-shadow: var(--shadow-1);
 }
 
+/* 🌙 Dark Navbar */
 .nav-dark {
-  background-color: rgb(31, 28, 28);
-  color: white;
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
+  box-shadow: var(--shadow-2);
 }
 
-.left-nav {
-  margin: 10px;
-  display: flex;
-  float: left;
-  gap: 10px;
-}
-
+/* 🧩 Nav Link Styling */
+.left-nav,
 .right-nav {
-  margin: 10px;
   display: flex;
-  float: right;
+  align-items: center;
+  gap: 16px; /* Increased gap */
 }
 
 .left-nav a,
 .right-nav a {
-  margin: 5px;
   text-decoration: none;
   color: currentColor;
-
+  font-weight: 500;
+  position: relative;
+  transition: color var(--transition-fast), transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Spring-like transform */
+  padding: 4px 6px; /* Area for hover effect */
 }
 
+/* 💫 Animated Hover Effect for Nav Links - "Underline Slide" */
+.left-nav a::after,
+.right-nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0px; /* Adjusted position */
+  left: 50%; /* Start from center */
+  transform: translateX(-50%); /* Center the line */
+  background-color: var(--color-primary); /* Use primary color */
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth cubic-bezier transition */
+}
+.left-nav a:hover::after,
+.right-nav a:hover::after {
+  width: 100%;
+}
 .left-nav a:hover,
 .right-nav a:hover {
-  color: aqua;
+  color: var(--color-primary);
+  transform: translateY(-3px); /* More pronounced lift */
 }
-
+/* 🌗 Light/Dark Mode Switch - More expressive */
 .switch {
   position: relative;
-  display: block;
-  width: 35px;
-  height: 20px;
-  justify-items: center;
-  align-self: center;
-  margin-left: 5px;
-  margin-right: 5px;
+  display: inline-block;
+  width: 50px; /* Wider */
+  height: 26px; /* Taller */
+  cursor: pointer;
+  transition: transform var(--transition-fast);
 }
 
-.switch :hover {
-  box-shadow: 0 2px 10px 0 rgb(116, 132, 235), 0 5px 10px 0 rgb(121, 166, 243);
+.switch:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); /* Primary color glow */
 }
 
 .switch input {
@@ -84,65 +146,151 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .2s;
-  transition: .2s;
+  background: #aab5c4; /* Soft grey in light mode */
+  border-radius: 34px;
+  transition: background 0.4s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
 }
 
 .slider:before {
-  position: absolute;
   content: "";
-  height: 13px;
-  width: 13px;
-  left: 2px;
-  bottom: 3.5px;
-  background-color: white;
-  -webkit-transition: .2s;
-  transition: .2s;
-}
-
-input:checked+.slider {
-  background-color: #2788d7;
-}
-
-input:focus+.slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked+.slider:before {
-  -webkit-transform: translateX(13px);
-  -ms-transform: translateX(13px);
-  transform: translateX(16px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
+  position: absolute;
+  height: 20px; /* Larger handle */
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: white;
   border-radius: 50%;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy transition */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+input:checked + .slider {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4); /* Brighter gradient */
+}
+input:checked + .slider:before {
+  transform: translateX(24px); /* Adjusted movement for new size */
+  background: #ffdd67; /* Sunny yellow handle */
+  box-shadow: 0 2px 5px rgba(255, 193, 7, 0.5);
+}
+
+/* 🗒️ Notes Section - Consistent Glassmorphism */
 .notes-container {
-  margin-top: 20px;
+  margin-top: 60px; /* More spacing */
+  width: 80%;
+  max-width: 1100px;
   justify-self: center;
-  width: 75%;
-  top: 50px;
-  position: relative;
-  background: none;
+  
+  /* Glassmorphism Re-applied */
+  background: rgba(255, 255, 255, 0.1); /* Lighter opacity */
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  
+  border-radius: 16px;
+  padding: 30px; /* More padding */
+  color: var(--color-text-light); /* Default to dark text inside the light glass */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Finer border */
+  
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .notes-container h1 {
-  justify-content: center;
-  width: 100%;
-  display: flex;
-  border-radius: 5px;
+  text-align: center;
+  font-size: 2.2rem; /* Larger heading */
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: currentColor; /* Inherits color from parent (either light or dark text) */
+  margin-bottom: 30px;
+  /* Add a subtle text shadow for pop */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); 
 }
-
+/* 🔘 Auth Buttons - Dynamic Press Effect */
 .login-button,
 .signup-button {
+  background: linear-gradient(135deg, var(--color-success), #16a34a);
+  color: white;
   border: none;
-  font-size: large;
+  padding: 10px 18px; /* Slightly larger hit area */
+  font-size: 1.05rem;
+  border-radius: 10px; /* More rounded */
+  cursor: pointer;
+  font-weight: 400;
+  /* Initial 3D appearance */
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.1s ease;
+}
 
+.login-button:hover,
+.signup-button:hover {
+  transform: translateY(-3px); /* More significant lift */
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5), 0 0 10px rgba(255, 255, 255, 0.2) inset; /* Brighter glow */
+}
+
+.login-button:active,
+.signup-button:active {
+  transform: translateY(1px); /* More noticeable press down */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Shadow disappears on press */
+  background: linear-gradient(135deg, #059669, #065f46); /* Darker on press */
+}
+
+/* ✨ Fade-in Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); } /* Stronger initial translation */
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .container {
+        padding-top: 0;
+    }
+
+ .nav-container {
+  flex-direction: column;
+  align-items: center; /* Center items for better mobile flow */
+  padding: 10px; /* Reduced padding for compact nav */
+  border-radius: 12px; /* Slightly smaller radius */
+  width: 95%; /* Closer to full width */
+  margin: 10px auto; /* Centered with a small margin */
+  gap: 10px; /* Space between stacked flex items */
+ }
+    
+    .left-nav a,
+    .right-nav a {
+        padding: 4px 8px; /* Touch friendly link area */
+    }
+ .left-nav, .right-nav { flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 5px; /* Added separation from the logo/title */ }
+    
+    /* Ensure the link text is still legible */
+    .left-nav a,
+    .right-nav a {
+        font-size: 0.95rem; 
+    }
+
+ .notes-container {
+  width: 95%; /* Near full-width container */
+  padding: 20px;
+ margin-top: 30px; /* Less top margin on mobile */
+ }
+
+ .notes-container h1 {
+  font-size: 1.6rem; /* Smaller heading for mobile */
+  margin-bottom: 15px;
+ }
+ 
+ .right-nav .switch {
+   margin-top: 5px;
+ }
+    
+    /* Make buttons fully touch responsive */
+    .login-button,
+    .signup-button {
+        width: 100%; /* Full width buttons look good on mobile */
+        max-width: 300px; /* To prevent overstretching in rare wide mobile views */
+        padding: 15px;
+        font-size: 1.1rem;
+        margin: 5px 0; /* Stacked look */
+        font-weight: 600;
+    }
 }

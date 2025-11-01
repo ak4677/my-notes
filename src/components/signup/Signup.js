@@ -9,7 +9,7 @@ export default function Signup() {
     const lighting = useContext(ModeContext)
     const navigate = useNavigate()
     const [credential, setCredential] = useState({ name: "", username: "", Email: "", password: "", confirmpass: "", number: "" })
-
+    const port=process.env.REACT_APP_PORT;
     const submit = async (e) => {
         e.preventDefault();
         if (credential.password !== credential.confirmpass) {
@@ -20,7 +20,7 @@ export default function Signup() {
         }
         else {
             try {
-                const response = await fetch("http://localhost:5000/api/auth/createuser", {
+                const response = await fetch(`${port}api/auth/createuser`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export default function Signup() {
     return (
         <div>
             <div>
-                <form onSubmit={submit} className={`editform nav-${lighting.intialstate.mode}`}>
+                <form onSubmit={submit} className={`cantainer cantainer-${lighting.intialstate.mode} `}>
                     <div className='name'>
                         <label htmlFor="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="Enter name " value={credential.name} onChange={onChange} />

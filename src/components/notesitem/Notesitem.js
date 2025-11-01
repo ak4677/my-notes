@@ -37,6 +37,7 @@ export default function Notesitem(props) {
             </div>
           </div>
           <p>{props.note.description}</p>
+          <p>{(props.note.date).slice(0,10)}</p>
           <div >
             <i className="fa-solid fa-trash-can pointer" onClick={() => deletenote(props.note._id, props.note.title)}></i>
             <i className="fa-regular fa-pen-to-square pointer" onClick={update}></i>
